@@ -3,7 +3,7 @@
 ----------
 npm i react react-dom
 ----------
-npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader clean-webpack-plugin copy-webpack-plugin core-js cross-env html-webpack-plugin terser-webpack-plugin webpack webpack-cli webpack-dev-server mini-css-extract-plugin css-loader css-minimizer-webpack-plugin
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader clean-webpack-plugin copy-webpack-plugin core-js cross-env html-webpack-plugin terser-webpack-plugin webpack webpack-cli webpack-dev-server @pmmmwh/react-refresh-webpack-plugin mini-css-extract-plugin css-loader style-loader file-loader
 ----------
 
 2. 개발용 서버 구동

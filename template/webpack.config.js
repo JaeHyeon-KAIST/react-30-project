@@ -3,19 +3,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const webpackMode = process.env.NODE_ENV || "development";
 
 module.exports = {
-  name: 'name',
+  name: 'template',
   mode: webpackMode,
   resolve: {
     extensions: ['.js', '.jsx'],
   },
   entry: {
-    app: './src/client',
+    app: './src/index',
   },
   output: {
     path: path.resolve("./dist"),
@@ -51,27 +50,42 @@ module.exports = {
     },
   },
   module: {
-    rules: [{
-      test: /\.jsx?$/,
-      loader: 'babel-loader',
-      options: {
-        presets: [
-          ['@babel/preset-env', {
-            targets: {browsers: ['> 5% in KR', 'last 2 chrome versions']},
-            debug: true,
-          }],
-          '@babel/preset-react',
-        ],
-        plugins: [webpackMode === "development" && require.resolve('react-refresh/babel')].filter(Boolean),
+    rules: [
+        {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['@babel/preset-env', {
+              targets: {browsers: ['> 5% in KR', 'last 2 chrome versions']},
+              debug: true,
+            }],
+            '@babel/preset-react',
+          ],
+          plugins: [webpackMode === "development" && require.resolve('react-refresh/babel')].filter(Boolean),
+        },
+        exclude: path.join(__dirname, 'node_modules'),
       },
-      exclude: path.join(__dirname, 'node_modules'),
-    }],
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(jpe?g|gif|png|svg|ico)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ],
   },
   plugins : [
     webpackMode === "development" && new ReactRefreshWebpackPlugin(),
     webpackMode === "production" && new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-        template: "./src/index.html",
+        template: "./public/index.html",
+        favicon: "./public/favicon.ico",
         minify:
           webpackMode === "production"
             ? {
@@ -80,10 +94,5 @@ module.exports = {
               }
             : false,
       }),
-    // new CopyWebpackPlugin({
-    //     patterns: [
-    //       { from: "./src/images", to: "./images" },
-    //     ],
-    //   }),
   ].filter(Boolean),
 };
