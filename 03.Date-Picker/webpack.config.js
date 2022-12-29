@@ -87,7 +87,7 @@ module.exports = {
               }
             : false,
       }),
-      // new MiniCssExtractPlugin({filename:"Draggable.css"}),
+      new MiniCssExtractPlugin({filename:"style.css"}),
     // new CopyWebpackPlugin({
     //     patterns: [
     //       { from: "./src/images", to: "./images" },
