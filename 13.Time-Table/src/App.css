@@ -1,0 +1,17 @@
+.container{
+    border:5px solid red;
+    margin:5px;
+    padding:5px;
+}
+
+td, th {
+    border: 1px solid rgba(224, 224, 224, 1);
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(#b8e78f, #44799b);
+}
