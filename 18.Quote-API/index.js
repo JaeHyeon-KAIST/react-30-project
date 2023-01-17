@@ -86,7 +86,7 @@ app.delete('/:id', (req, res) => {
     return;
   }
 
-  data.slice(num, 1)
+  data.splice(num, 1)
 
   res.json({
     rs: true
