@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import Box from '../components/Box'
 import Button from '../components/Button'
 import Flex from '../components/Flex'
-import { VscChevronLeft, VscEdit, VscTrash } from 'react-icons/vsc'
+import { VscChevronLeft, VscCopy, VscEdit, VscLiveShare, VscTrash } from 'react-icons/vsc'
+import {CopyToClipboard} from 'react-copy-to-clipboard'
 
 function MemoDetailPage() {
   const {id} = useParams()
@@ -43,6 +44,20 @@ function MemoDetailPage() {
           }
         </Flex>
         <Flex justifyContent={"flex-end"} style={{gap: 8}}>
+          <Button square onClick={() => {
+            window.navigator.share({
+              title: "클라우드 메모 공유",
+              text: memo.content,
+              url: window.location.href
+            })
+          }}>
+            <VscLiveShare/>
+          </Button>
+          <CopyToClipboard text={window.location.href} onCopy={() => alert("복사되었습니다")}>
+            <Button square>
+              <VscCopy/>
+            </Button>
+          </CopyToClipboard>
           <Button square onClick={() => navigate("edit")}>
             <VscEdit/>
           </Button>
