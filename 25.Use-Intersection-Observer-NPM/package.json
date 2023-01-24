@@ -1,0 +1,9 @@
+{
+  "name": "@leejaehyeon/use-intersection-observer",
+  "version": "0.1.0",
+  "author": "Lee JaeHyeon",
+  "main": "index.js",
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}
