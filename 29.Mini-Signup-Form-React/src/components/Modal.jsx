@@ -1,9 +1,6 @@
-import React, { forwardRef, useCallback, useContext } from 'react'
-import { FormContext } from '../App'
+import React, { forwardRef, useCallback } from 'react'
 
-function Modal(props, ref) {
-  const {formData} = useContext(FormContext)
-
+function Modal({getValues }, ref) {
   const handleClick = useCallback((e) => {
     e.target.id === 'approve-btn' && window.alert('가입되었습니다 🥳')
     ref.current.close()
@@ -23,7 +20,7 @@ function Modal(props, ref) {
                 id="confirm-id"
                 className="text-sm text-blue-500 bold"
               >
-                {formData.id}
+                {getValues().id}
               </p>
             </div>
             <div className="mt-2">
@@ -32,7 +29,7 @@ function Modal(props, ref) {
                 id="confirm-pw"
                 className="text-sm text-blue-500 bold"
               >
-                {formData.pw}
+                {getValues().pw}
               </p>
             </div>
           </div>
