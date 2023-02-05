@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'PT Mono', monospace;
+    background-color: aliceblue;
+}
+
+button::before {
+    content: ' ';
+    position: absolute;
+    inset: 3px;
+    z-index: 1;
+    border: 2px white solid;
+    border-radius: 100%;
+}
