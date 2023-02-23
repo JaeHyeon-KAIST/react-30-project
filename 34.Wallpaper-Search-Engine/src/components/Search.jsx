@@ -66,7 +66,9 @@ const Search = ({setQuery, setOrientation, setOrder, setPerPage}) => {
       const currentValue = e.target.value
       setQuery(currentValue)
       updateSearchInput('')
-      setSearchTags(prev => [...prev, currentValue])
+      if (!searchTags.includes(currentValue)) {
+        setSearchTags(prev => [...prev, currentValue])
+      }
     }
   }
 
@@ -99,7 +101,9 @@ const Search = ({setQuery, setOrientation, setOrder, setPerPage}) => {
             검색 옵션 {searchOption ? '닫기' : '열기'}
           </SearchOptionButton>
         </SearchInputContainer>
-        {searchOption && <SearchOption setOrientation={setOrientation} setOrder={setOrder} setPerPage={setPerPage} />}
+        <div hidden={!searchOption}>
+          <SearchOption setOrientation={setOrientation} setOrder={setOrder} setPerPage={setPerPage} />
+        </div>
       </SearchBoxContainer>
       <SearchTagContainer>
         {searchTags.map((tag, idx) => (
