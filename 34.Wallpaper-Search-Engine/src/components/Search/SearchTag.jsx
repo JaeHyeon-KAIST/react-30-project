@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DeleteIcon from '../asset/delete.svg';
+import DeleteIcon from '../../asset/delete.svg';
 import React from 'react';
 
 const Tag = styled.div`

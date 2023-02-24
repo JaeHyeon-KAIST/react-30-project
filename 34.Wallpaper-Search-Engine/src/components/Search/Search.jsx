@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import SearchIcon from '../asset/search.svg';
+import SearchIcon from '../../asset/search.svg';
 import SearchTag from './SearchTag';
 import SearchOption from './SearchOption';
 

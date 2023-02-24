@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import ImageCard from './ImageCard';
 import ImageModal from './ImageModal';
-import Pagination from './Pagination';
-import EmptyResult from './EmptyResult';
+// import Pagination from './Pagination';
+// import EmptyResult from './EmptyResult';
 
 const Container = styled.div`
   max-width: 1830px;
@@ -28,13 +28,11 @@ const ResultContainer = ({data, page, setPage, numOfPages}) => {
       {currentImageDetail && (
         <ImageModal currentImageDetail={currentImageDetail} setCurrentImageDetail={setCurrentImageDetail}/>
       )}
-      {data.hits?.length && <Pagination page={page} setPage={setPage} numOfPages={numOfPages}/>}
+      {/* {data.hits?.length && <Pagination page={page} setPage={setPage} numOfPages={numOfPages}/>} */}
       <ResultsWrapper>
-        {data.hits?.length > 0 ? data.hits?.map((imgData, idx) => (
+        {data.hits?.length > 0 && data.hits?.map((imgData, idx) => (
           <ImageCard key={`${imgData.id}${idx}`} imgData={imgData} onClick={() => setCurrentImageDetail(imgData)} />
-        )) : (
-          <EmptyResult />
-        )}
+        ))}
       </ResultsWrapper>
     </Container>
   );
