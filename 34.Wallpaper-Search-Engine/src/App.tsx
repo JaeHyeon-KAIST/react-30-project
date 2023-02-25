@@ -9,6 +9,7 @@ import getWallPapers from './api/getWallpapers';
 import EmptyResult from './components/EmptyResult';
 import Title from './components/Title';
 import Search from './components/Search/Search';
+import { IGetWallPapersResponse, Order, Orientation } from './types';
 
 const Container = styled.div`
   position: relative;
@@ -29,13 +30,13 @@ const Header = styled.div`
 `;
 
 function App() {
-  const [data, setData] = useState({total: 0, totalHits: 0, hits: []})
+  const [data, setData] = useState<IGetWallPapersResponse>({total: 0, totalHits: 0, hits: []})
   const [query, setQuery] = useState('')
-  const [order, setOrder] = useState('popular')
-  const [orientation, setOrientation] = useState('all')
+  const [order, setOrder] = useState<Order>('popular')
+  const [orientation, setOrientation] = useState<Orientation>('all')
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(20)
-  const target = useRef()
+  const target = useRef<HTMLDivElement | null>(null)
 
   const numOfPages = Math.ceil((data.totalHits ?? 0) / perPage)
 
@@ -45,8 +46,8 @@ function App() {
         q: query,
         orientation: orientation,
         order: order,
-        page: page,
-        per_page: perPage
+        page: page.toString(),
+        per_page: perPage.toString()
       })
       if (page === 1) {
         setData(data)
@@ -59,7 +60,7 @@ function App() {
 
   console.log(data)
 
-  const callback = ([entries]) => {
+  const callback: IntersectionObserverCallback = ([entries]) => {
     if (entries.isIntersecting) {
       setPage(prev => prev + 1)
     }

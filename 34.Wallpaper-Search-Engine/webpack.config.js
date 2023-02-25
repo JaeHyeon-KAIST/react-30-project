@@ -12,10 +12,10 @@ module.exports = {
   name: 'wallpaper-search-engine',
   mode: webpackMode,
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   entry: {
-    app: './src/index',
+    app: './src/index.tsx',
   },
   output: {
     path: path.resolve("./dist"),
@@ -55,8 +55,8 @@ module.exports = {
   },
   module: {
     rules: [
-        {
-        test: /\.jsx?$/,
+      {
+        test: /\.(ts|js)x?$/,
         loader: 'babel-loader',
         options: {
           presets: [
@@ -65,6 +65,7 @@ module.exports = {
               debug: true,
             }],
             '@babel/preset-react',
+            "@babel/preset-typescript",
           ],
           plugins: [webpackMode === "development" && require.resolve('react-refresh/babel')].filter(Boolean),
         },
