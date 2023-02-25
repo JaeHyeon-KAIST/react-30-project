@@ -4,7 +4,7 @@ import Box from './components/Box';
 import Flex from './components/Flex';
 import { VscListUnordered, VscArrowLeft, VscAdd, VscTrash, VscEdit, VscClose, VscCheck } from 'react-icons/vsc';
 
-axios.defaults.baseURL = "https://jaehyeon.art/3101"
+axios.defaults.baseURL = "https://jaehyeon.art/quote-api"
 
 function App() {
   const [page, setPage] = useState('main');
